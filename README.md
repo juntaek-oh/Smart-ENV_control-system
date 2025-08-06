@@ -2,16 +2,12 @@
 ---
 
 <div align="center">
-  <img src="![시연영상](https://github.com/user-attachments/assets/656af57a-8e2c-44ed-969b-0d163622a047)
-" width="320"/>
-  <img src="![시연영상](https://github.com/user-attachments/assets/8d56b06a-245f-43cc-ad13-9cc70839f979)
-" width="320"/>
+  <img src="https://github.com/user-attachments/assets/656af57a-8e2c-44ed-969b-0d163622a047" width="320"/>
+  <img src="https://github.com/user-attachments/assets/8d56b06a-245f-43cc-ad13-9cc70839f979" width="320"/>
 </div>
 <div align="center">
-  <img src="![시연영상](https://github.com/user-attachments/assets/291d4899-3235-46b2-8313-0621d3945a85)
-" width="320"/>
-  <img src="![시연영상](https://github.com/user-attachments/assets/6024112f-56b1-487e-bd06-abed6e4dae64)
-" width="320"/>
+  <img src="https://github.com/user-attachments/assets/291d4899-3235-46b2-8313-0621d3945a85" width="320"/>
+  <img src="https://github.com/user-attachments/assets/6024112f-56b1-487e-bd06-abed6e4dae64" width="320"/>
 </div>
 
 ---
