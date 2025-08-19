@@ -1,222 +1,313 @@
-# 🌱 Smart Environment Control System
-
-<table>
-  <tr>
-    <td width="50%">
-      <strong>LED 상태 표시</strong><br>
-      <img src="led_status.png" alt="LED Status Display">
-    </td>
-    <td width="50%">
-      <strong>시스템 플로우차트</strong><br>
-      <img src="system_flowchart.png" alt="System Flowchart">
-    </td>
-  </tr>
-</table>
+# 🌱 스마트 환경 제어 시스템
 
 <div align="center">
+  <table>
+    <tr>
+      <td width="25%">
+        <strong>예시 1</strong><br>
+        <img src="![시연영상](https://github.com/user-attachments/assets/345c49f8-79cc-4924-a3d0-09f867352a4a)" >
+      </td>
+      <td width="25%">
+        <strong>예시 2</strong><br>
+        <img src="![시연영상 (1)](https://github.com/user-attachments/assets/111baabe-8cf1-49e2-a425-d71fd09a8686)">
+      </td>
+      <td width="25%">
+        <strong>예시 3</strong><br>
+        <img src="![시연영상 (2)](https://github.com/user-attachments/assets/fa0bb789-046c-4c60-8aa5-55ab0a248762)">
+      </td>
+      <td width="25%">
+        <strong>예시 4 대시보드</strong><br>
+        <img src="![시연영상 (3)](https://github.com/user-attachments/assets/f54a0976-d4c7-4a3f-a2a2-951c2dc5adf0)" >
+      </td>
+    </tr>
+  </table>
 
-**STM32 NUCLEO-F411RE 기반 스마트 환경 제어 시스템**  
-*온습도 센서, RGB LED, 도트매트릭스, LCD를 활용한 실시간 환경 모니터링 및 자동 제어*
-
+  <strong>STM32 NUCLEO-F411RE 기반 스마트 환경 제어 시스템</strong><br>
+  <em>온습도 센서, RGB LED, 도트매트릭스, LCD를 활용한 실시간 환경 모니터링 및 자동 제어</em>
 </div>
 
----
-
 ## 📋 목차
-- [🎯 주요 기능](#🎯-주요-기능)
-- [🔧 하드웨어 구성](#🔧-하드웨어-구성)
-- [📟 핀 구성](#📟-핀-구성)
-- [🎨 RGB LED 상태](#🎨-rgb-led-상태)
-- [😊 도트매트릭스 애니메이션](#😊-도트매트릭스-애니메이션)
-- [📊 시스템 제어 로직](#📊-시스템-제어-로직)
-- [🚀 설치 및 실행](#🚀-설치-및-실행)
-- [⚙️ 설정](#⚙️-설정)
-- [🔧 문제해결](#🔧-문제해결)
-- [🤝 기여하기](#🤝-기여하기)
-- [📞 연락처](#📞-연락처)
-
----
+- [🎯 주요 기능](#-주요-기능)
+- [🏗️ 시스템 아키텍처](#-시스템-아키텍처)
+- [🔧 하드웨어 구성](#-하드웨어-구성)
+- [📟 핀 구성](#-핀-구성)
+- [🎨 RGB LED 상태](#-rgb-led-상태)
+- [😊 도트매트릭스 애니메이션](#-도트매트릭스-애니메이션)
+- [📊 시스템 제어 로직](#-시스템-제어-로직)
+- [🚀 설치 및 실행](#-설치-및-실행)
+- [⚙️ 설정](#-설정)
+- [🔧 문제해결](#-문제해결)
+- [🤝 기여하기](#-기여하기)
 
 ## 🎯 주요 기능
 
-### 🌡️ 환경 모니터링
-- **온도 센서**: DHT11 × 2 (실내·실외)
-- **습도 센서**: 실시간 습도 모니터링
-- **LCD 실시간 표시**: 현재 온습도 상태
-- **라즈베리파이 연동**: UART 통신으로 데이터 전송
+### 🌡️ 실시간 환경 모니터링
+- **온도 및 습도 센서**: DHT11 x2 (실내/실외)로 온습도 측정
+- **실시간 표시**: LCD 1602에 실시간 온습도 표시
+- **데이터 수집**: 1분 간격으로 데이터 수집 및 MySQL 저장
+- **라즈베리파이 연동**: HC-06 블루투스를 통한 데이터 전송
 
-### 🎨 시각적 피드백
-- **RGB LED**: 7 가지 색상으로 환경 상태 표현
-- **도트매트릭스**: 8 가지 표정, 2-프레임 반복 애니메이션
+### 🤖 자동 환경 제어
+- **온도 제어**: 내부 온도 > 28°C 시 EZ 모터 R300(선풍기) ON
+- **습도 제어**: 내부 습도 < 60% 시 가습기 ON
+- **시각적 피드백**:
+  - RGB LED: 3가지 색상 (파랑: ≤15°C, 초록: 16-27°C, 빨강: ≥28°C)
+  - 도트매트릭스: 3가지 표정 (😊: 정상, 😐: 주의, ☹️: 제어 활성화)
 
-### 🔄 스마트 자동 제어
-- **팬 제어**: 25 °C / 20 °C 기준
-- **가습기 제어**: 55 % / 40 % 기준
-- **통합 로직**: 온·습도 조합별 최적 동작
+### 📡 IoT 통신 및 데이터 관리
+- **무선 전송**: STM32 → HC-06 → Raspberry Pi
+- **데이터베이스**: MySQL에 실내/실외 온습도 저장
+- **시각화**: Grafana 대시보드로 실시간 온습도 그래프 제공
+- **원격 모니터링**: 웹 기반 상태 확인
 
----
+### 🛡️ 안정성 및 예외처리
+- 센서 오류 및 블루투스 연결 실패 처리
+- 전압 모니터링 및 통신 타임아웃 관리
+
+## 🏗️ 시스템 아키텍처
+```
+graph TB
+    subgraph "Sensor Layer"
+        A[실내 DHT11<br/>온습도 센서]
+        B[실외 DHT11<br/>온습도 센서]
+    end
+    subgraph "Control Unit"
+        C[STM32F411RE<br/>메인 컨트롤러]
+        D[LCD 1602<br/>실시간 표시]
+        E[8x8 Dot Matrix<br/>상태 표정]
+        F[RGB LED<br/>온도 상태]
+    end
+    subgraph "Actuators"
+        G[EZ 모터 R300<br/>선풍기 제어]
+        H[가습기 모듈<br/>습도 제어]
+    end
+    subgraph "Communication Layer"
+        I[HC-06<br/>블루투스 모듈]
+        J[Raspberry Pi 4<br/>IoT 게이트웨이]
+    end
+    subgraph "Data & Visualization"
+        K[MySQL 데이터베이스<br/>시계열 데이터 저장]
+        L[Grafana 대시보드<br/>실시간 시각화]
+        M[웹 인터페이스<br/>원격 모니터링]
+    end
+    A --> C
+    B --> C
+    C --> D
+    C --> E
+    C --> F
+    C --> G
+    C --> H
+    C --> I --> J
+    J --> K --> L
+    L --> M
+```
 
 ## 🔧 하드웨어 구성
-
-| 구성품 | 모델 | 수량 | 비고 |
-|--------|------|------|------|
-| MCU | STM32 NUCLEO-F411RE | 1 | 메인보드 |
-| 온습도 센서 | **DHT11** | 2 | Indoor / Outdoor |
-| RGB LED |   | 1 | 공통 캐소드 |
-| 8×8 도트매트릭스 | + 74HC595 | 1 | 애니메이션 표시 |
-| LCD | I²C 16×2 | 1 | 상태 표시 |
-| 가습기 모듈 | 릴레이 방식 | 1 | PC8 제어 |
-| 통신 | HC-06 (BLE) | 1 | PC6/PC7 |
-| 무선 센서 | EZ-R300 | 1 | PA6 입력 |
-
----
+- **메인보드**: STM32F411RE
+- **온습도 센서**: DHT11 x2 (실내/실외)
+- **디스플레이**: LCD 1602, 8x8 도트매트릭스 (74HC595 시프트 레지스터), RGB LED (공통 캐소드)
+- **액추에이터**: EZ 모터 R300 (선풍기), 가습기 모듈 (릴레이 제어)
+- **통신**: HC-06 블루투스, Raspberry Pi 4
 
 ## 📟 핀 구성
-
-| 구성 | 핀 | 기능 | 설명 |
-|------|----|------|------|
-| **RGB LED** | PC10 | Red   | R 채널 |
-|              | PC11 | Green | G 채널 |
-|              | PC12 | Blue  | B 채널 |
-| **DHT11**    | PD2  | Indoor  | 실내 센서 |
-|              | PC4  | Outdoor | 실외 센서 |
-| **Dot-Matrix** | PC1 | SER   | 데이터 입력 |
-|                | PC2 | SRCLK | 시프트 클록 |
-|                | PC3 | RCLK  | 래치 클록 |
-| **LCD (I²C)** | PB6 | SCL | 클록 |
-|               | PB7 | SDA | 데이터 |
-| **Humidifier** | PC8 | Output | 릴레이 |
-| **HC-06**    | PC6 | TX | UART TX |
-|              | PC7 | RX | UART RX |
-| **EZ-R300**  | PA6 | IN+ | 아날로그 입력 |
-
----
+| 구성요소       | 핀 번호    | 기능     | 설명                     |
+|----------------|------------|----------|--------------------------|
+| 실내 DHT11     | PA0        | 데이터   | 실내 온습도 센서         |
+| 실외 DHT11     | PA1        | 데이터   | 실외 온습도 센서         |
+| LCD 1602       | PB12-PB15  | D4-D7    | 데이터 버스              |
+|                | PB10       | RS       | 레지스터 선택            |
+|                | PB11       | E        | 활성화 신호              |
+| 도트매트릭스   | PC1        | SER      | 직렬 데이터 입력         |
+|                | PC2        | SRCLK    | 시프트 레지스터 클록     |
+|                | PC3        | RCLK     | 래치 클록                |
+| RGB LED        | PA8        | Red      | 빨간색 LED 제어          |
+|                | PA9        | Green    | 초록색 LED 제어          |
+|                | PA10       | Blue     | 파란색 LED 제어          |
+| EZ 모터 R300   | PB0        | PWM      | 선풍기 제어              |
+| 가습기         | PB1        | 릴레이   | 가습기 제어              |
+| HC-06          | PA2        | TX       | 블루투스 송신            |
+|                | PA3        | RX       | 블루투스 수신            |
 
 ## 🎨 RGB LED 상태
-
-| RGB 색상 | 조건 | 팬 | 가습기 | 의미 |
-|----------|------|----|--------|------|
-| 🟡 Yellow | T ≥ 25 °C ∧ H > 55 % | OFF | OFF | 고온 고습 |
-| 🔴 Red    | T ≥ 25 °C ∧ H ≤ 55 % | OFF | ON/OFF | 고온 |
-| 🟢 Green  | 20 °C ≤ T < 25 °C ∧ H > 55 % | OFF | OFF | 고습 |
-| ⚪ White  | 20 °C ≤ T < 25 °C ∧ 40 % < H ≤ 55 % | OFF | OFF | 최적 |
-| ⚫ Off    | 20 °C ≤ T < 25 °C ∧ H ≤ 40 % | OFF | ON | 건조 |
-| 🟦 Teal   | T < 20 °C ∧ H > 55 % | ON  | OFF | 저온 고습 |
-| 🔵 Blue   | T < 20 °C ∧ 40 % < H ≤ 55 % | ON  | OFF | 저온 |
-
----
+| LED 색상 | 온도 범위 | 의미         |
+|----------|-----------|--------------|
+| 🔵 파란색 | ≤15°C     | 낮은 온도    |
+| 🟢 초록색 | 16-27°C   | 적정 온도    |
+| 🔴 빨간색 | ≥28°C     | 높은 온도    |
 
 ## 😊 도트매트릭스 애니메이션
+| 표정 | 온도 조건   | 제어 상태       |
+|------|-------------|-----------------|
+| 😊   | 적정 온도   | 정상            |
+| 😐   | 경계 온도   | 주의            |
+| ☹️   | 임계 초과   | 제어 작동       |
 
-| 애니메이션 | 표시 조건 | 설명 |
-|------------|-----------|------|
-| **Heat + Dehumi** | 고온·고습 | 땀 + 제습 아이콘 |
-| **Heat** | 고온 | 땀 방울 |
-| **Heat + Humi** | 고온·건조 | 갈증 표정 |
-| **Dehumi** | 고습 | 제습 아이콘 |
-| **Smile** | 최적 | 행복 😊 |
-| **Humi** | 건조 | 목마름 😮‍💨 |
-| **Fan + Dehumi** | 저온·고습 | 바람 + 제습 |
-| **Fan** | 저온 | 추위 🥶 |
-| **Fan + Humi** | 저온·건조 | 추위 + 갈증 |
-
-*모든 애니메이션은 2 프레임, 500 ms 간격으로 반복됩니다.*
-
----
+### 애니메이션 특징
+- 500ms 간격으로 프레임 전환
+- 무한 반복 애니메이션
+- 상황별 표정으로 직관적 상태 표현
 
 ## 📊 시스템 제어 로직
-
-flowchart TD
-Start --> Read[DHT READ]
-Read -- No --> ErrUART[UART "Error"] --> LCDErr[LCD "IN=Error\nOUT=Error"] --> Off[Animation & GPIO OFF]
-Read -- Yes --> SendRasPi[UART SEND Temp,Hum] --> CheckT{Temp ≥ 25 °C?}
-CheckT -- Yes --> CheckH1{Hum > 55%?}
-CheckH1 -- Yes --> LCD1[LCD & Actions] --> Yellow[RGB Yellow / LED Heat+Dehumi]
-CheckH1 -- No --> CheckH1b{Hum > 40%?}
-CheckH1b -- Yes --> Red1[RGB Red / LED Heat]
-CheckH1b -- No --> Red2[RGB Red / LED Heat+Humi]
-CheckT -- No --> MidT{Temp ≥ 20 °C?}
-MidT -- Yes --> CheckH2{Hum > 55%?}
-CheckH2 -- Yes --> Green[RGB Green / LED Dehumi]
-CheckH2 -- No --> CheckH2b{Hum > 40%?}
-CheckH2b -- Yes --> White[RGB White / LED Smile]
-CheckH2b -- No --> OffRGB[RGB Off / LED Humi]
-MidT -- No --> CheckH3{Hum > 55%?}
-CheckH3 -- Yes --> Teal1[RGB Teal / LED Fan+Dehumi]
-CheckH3 -- No --> CheckH3b{Hum > 40%?}
-CheckH3b -- Yes --> Blue[RGB Blue / LED Fan]
-CheckH3b -- No --> Teal2[RGB Teal / LED Fan+Humi]
-
-text
-
----
+```
+시작 → DHT11 센서 읽기
+  ↓
+센서 오류? → UART "Error" 전송 → LCD "Error" 표시 → 애니메이션 OFF
+  ↓
+정상 읽기 → 라즈베리파이 데이터 전송 → MySQL 저장
+  ↓
+온도 > 28°C?
+├─ YES → 선풍기 ON, RGB=Red, 도트매트릭스=☹28
+└─ NO → 온도 > 15°C?
+    ├─ YES → 선풍기 OFF, RGB=Green, 도트매트릭스=😊
+    └─ NO → 선풍기 OFF, RGB=Blue, 도트매트릭스=😐
+  ↓
+습도 < 60%?
+├─ YES → 가습기 ON
+└─ NO → 가습기 OFF
+```
 
 ## 🚀 설치 및 실행
 
-1. **필수 도구**  
-   - STM32CubeIDE 또는 Keil uVision  
-   - STM32 HAL 라이브러리  
-   - **DHT11** 드라이버
+### 필수 사항
+- STM32CubeIDE 또는 Keil uVision
+- STM32 HAL 라이브러리
+- DHT11 라이브러리
+- Raspberry Pi 4, Python 3.9+, MySQL 8.0, Grafana 8.0+
+- 12V/5V/3.3V 전원 공급
 
-2. **저장소 클론**  
-git clone https://github.com/juntaek-oh/Smart-ENV_control-system.git
-cd Smart-ENV_control-system
+### 설치 과정
+1. **저장소 복제**
+   ```bash
+   git clone https://github.com/juntaek-oh/Smart-ENV_control-system.git
+   cd Smart-ENV_control-system
+   ```
+2. **STM32 펌웨어 업로드**
+   ```bash
+   st-flash write build/smart_barn.bin 0x8000000
+   ```
+3. **Raspberry Pi 설정**
+   ```bash
+   sudo apt-get update
+   sudo apt-get install python3-pip python3-venv
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install pyserial mysql-connector-python configparser
+   ```
+4. **MySQL 설정**
+   ```sql
+   CREATE DATABASE smart_barn;
+   USE smart_barn;
+   CREATE TABLE environmental_data (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+       indoor_temp FLOAT NOT NULL,
+       indoor_humidity FLOAT NOT NULL,
+       outdoor_temp FLOAT NOT NULL,
+       outdoor_humidity FLOAT NOT NULL,
+       fan_status BOOLEAN DEFAULT FALSE,
+       humidifier_status BOOLEAN DEFAULT FALSE
+   );
+   ```
+5. **Grafana 설치**
+   ```bash
+   sudo apt-get install -y software-properties-common
+   sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+   sudo apt-get update
+   sudo apt-get install grafana
+   sudo systemctl start grafana-server
+   sudo systemctl enable grafana-server
+   ```
 
-text
-
-3. **STM32CubeIDE**로 프로젝트 열기 → 핀 설정 확인 → 빌드 & 업로드
-
----
+### 실행
+```bash
+source venv/bin/activate
+python RaspberryPi/data_receiver.py
+sudo systemctl start smart-barn.service
+```
 
 ## ⚙️ 설정
+### 임계값 설정 (`config.json`)
+```json
+{
+  "thresholds": {
+    "max_temp": 28.0,
+    "min_temp": 15.0,
+    "min_humidity": 60.0,
+    "max_humidity": 85.0
+  },
+  "control_settings": {
+    "fan_delay": 30,
+    "humidifier_delay": 60,
+    "data_interval": 60
+  }
+}
+```
 
-/* 임계값 */
-#define TEMP_HIGH 25 // 고온
-#define TEMP_MID 20 // 중간
-#define HUMI_HIGH 55 // 고습
-#define HUMI_MID 40 // 중간
-
-/* 도트매트릭스 */
-#define FRAME_DELAY 500 // ms
-#define FRAME_CNT 2
-
-text
-
----
+### 통신 설정
+```json
+{
+  "bluetooth": {
+    "device_address": "98:D3:32:31:59:26",
+    "auto_reconnect": true,
+    "reconnect_interval": 10,
+    "timeout": 5
+  }
+}
+```
 
 ## 🔧 문제해결
-
-| 증상 | 원인 & 해결 |
-|------|-------------|
-| 센서 값 0 / NaN | DHT11 배선·전원·타이밍 확인 |
-| RGB 색상 이상 | PWM 채널·공통 캐소드 배선 확인 |
-| 도트매트릭스 깜빡임 | SRCLK/RCLK 신호 확인, 딜레이 조정 |
-| LCD 미표시 | I²C 주소·풀업 저항·SCL/SDA 배선 점검 |
-
----
+- **블루투스 연결 실패**:
+  - HC-06 전원 및 페어링 확인:
+    ```bash
+    sudo hcitool scan
+    sudo bluetoothctl
+    pair 98:D3:32:31:59:26
+    sudo rfcomm bind 0 98:D3:32:31:59:26
+    ```
+- **센서 읽기 실패**:
+  - VCC/GND/데이터 핀 연결 확인
+  - 10kΩ 풀업 저항 확인
+  - 5초 이상 간격으로 센서 읽기
+- **MySQL 연결 오류**:
+  - 서비스 상태 확인:
+    ```bash
+    sudo systemctl status mysql
+    ```
+  - 사용자 권한:
+    ```sql
+    GRANT ALL PRIVILEGES ON smart_barn.* TO 'smart_barn'@'localhost';
+    FLUSH PRIVILEGES;
+    ```
+  - 방화벽:
+    ```bash
+    sudo ufw allow 3306
+    ```
+- **Grafana 표시 문제**:
+  - 데이터소스, 쿼리, 시간 범위, 필드 매핑 확인
 
 ## 🤝 기여하기
+### 기여 방법
+1. Fork the Project
+2. Create Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to Branch (`git push origin feature/AmazingFeature`)
+5. Open Pull Request
 
-1. **Fork** → 2. **브랜치** 생성 → 3. **커밋** → 4. **푸시** → 5. **Pull Request**
+### 🐛 버그 리포트
+Issues 탭에서 다음 정보를 제공:
+- **하드웨어**: STM32 보드, 센서 모델
+- **개발환경**: STM32CubeIDE 버전, HAL 라이브러리, Python 버전
+- **에러 메시지**: 컴파일/런타임 에러
+- **재현 단계**: 문제 발생 절차
+- **기대/실제 동작**
 
-버그·개선 제안은 Issues 탭에 다음 정보를 포함해 주세요.  
-OS / IDE 버전 / 보드·센서 모델 / 로그·에러 메시지 / 재현 단계
-
----
-
-## 📞 연락처
-
-- 📧 ojt8416@gmail.com  
-- 💬 [GitHub Issues](https://github.com/juntaek-oh/Smart-ENV_control-system/issues)
-
----
+### 📞 연락처
+- **이메일**: ojt8416@gmail.com
+- **GitHub Issues**: [링크](#)
 
 <div align="center">
-
-🌱 **스마트 환경 제어로 쾌적한 실내 환경을 만들어 보세요!**  
-**7 가지 RGB 상태 × 8 가지 도트매트릭스 애니메이션 = 직관적 시각 피드백**
-
-⭐ 도움이 되셨다면 **Star** 부탁드립니다!  
-🔄 Pull Request·Issue 대환영!
-
+  🌱 스마트 환경 제어로 쾌적한 축사 환경을 만들어보세요!<br>
+  STM32와 IoT 기술로 구현한 지능형 환경 제어 시스템<br>
+  ⭐ 도움이 되셨다면 Star를 눌러주세요! ⭐<br>
+  🔄 Pull Requests와 Issues를 환영합니다!
 </div>
