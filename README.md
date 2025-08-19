@@ -653,3 +653,32 @@ void bluetooth_send_data(sensor_data_t indoor, sensor_data_t outdoor);
 2. **Feature Branch** 생성 (`git checkout -b feature/AmazingFeature`)
 3. **변경사항 커밋** (`git commit -m 'Add some AmazingFeature'`)
 4. **Branch에 Push** (`git push origin feature/AmazingFeature`)
+5. **Open Pull Request**
+
+🐛 버그 리포트
+Issues 탭에서 다음 정보와 함께 버그를 리포트해 주세요:
+
+- OS: (예시) Ubuntu 22.04, Windows 11 등
+
+- Python 버전: (예시) 3.9, 3.10 등
+
+관련 패키지 버전:
+
+- 에러 메시지: 전체 traceback
+
+- 재현 단계: 코드 실행 명령, 예상 동작, 실제 동작 등
+
+- 추가 정보: 스크린샷, 로그 등
+
+📞 연락처
+- 이메일: ojt8416@gmail.com
+
+- GitHub Issues: 링크
+
+<div align="center">
+🌱 스마트 환경 제어 시스템으로 더 편리한 삶을 시작하세요!
+
+사용 방법이나 개선 제안, 문의는 언제든 환영합니다.
+Star와 Issue, PR로 여러분의 의견을 남겨주세요!
+
+</div>
