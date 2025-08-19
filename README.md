@@ -2,26 +2,31 @@
 
 <table>
 <tr>
-<td width="25%">
+<td width="50%">
 
 ![시연영상](https://github.com/user-attachments/assets/c185b752-f42f-4306-9656-85c974743606)
 
 
 </td>
 
-<td width="25%">
+<td width="50%">
 
 ![시연영상 (1)](https://github.com/user-attachments/assets/7b4c1000-8b78-4675-91f6-d40c16e2b0cd)
 
 </td>
+</tr>
+</table>
 
-<td width="25%">
+<table>
+<tr>
+
+<td width="50%">
 
 ![시연영상 (2)](https://github.com/user-attachments/assets/b3c3917e-4d8d-4ad6-a457-a77fd989651c)
 
 </td>
 
-<td width="25%">
+<td width="50%">
 
 ![시연영상 (3)](https://github.com/user-attachments/assets/a4d9d83d-6971-4071-93dc-610983fc5a29)
 
