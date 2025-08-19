@@ -1,26 +1,33 @@
 # 🌱 스마트 환경 제어 시스템
 
-<div align="center">
-  <table>
-    <tr>
-      <td width="25%">
-        <strong>RGB LED 애니메이션</strong><br>
-        <img src="rgb_led_animation.gif" alt="RGB LED Animation">
-      </td>
-      <td width="25%">
-        <strong>도트매트릭스 표정</strong><br>
-        <img src="dot_matrix_expression.gif" alt="Dot Matrix Expression">
-      </td>
-      <td width="25%">
-        <strong>LCD 실시간 업데이트</strong><br>
-        <img src="lcd_update.gif" alt="LCD Real-time Update">
-      </td>
-      <td width="25%">
-        <strong>Grafana 대시보드</strong><br>
-        <img src="grafana_dashboard.gif" alt="Grafana Dashboard">
-      </td>
-    </tr>
-  </table>
+<table>
+<tr>
+<td width="25%">
+
+![시연영상](https://github.com/user-attachments/assets/c185b752-f42f-4306-9656-85c974743606)
+
+
+</td>
+
+<td width="25%">
+
+![시연영상 (1)](https://github.com/user-attachments/assets/7b4c1000-8b78-4675-91f6-d40c16e2b0cd)
+
+</td>
+
+<td width="25%">
+
+![시연영상 (2)](https://github.com/user-attachments/assets/b3c3917e-4d8d-4ad6-a457-a77fd989651c)
+
+</td>
+
+<td width="25%">
+
+![시연영상 (3)](https://github.com/user-attachments/assets/a4d9d83d-6971-4071-93dc-610983fc5a29)
+
+</td>
+</tr>
+</table>
 
   <strong>STM32 NUCLEO-F411RE 기반 스마트 축사 환경 제어 시스템</strong><br>
   <em>온습도 센서, RGB LED, 도트매트릭스, LCD를 활용한 실시간 환경 모니터링 및 자동 제어</em>
