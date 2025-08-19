@@ -653,4 +653,3 @@ void bluetooth_send_data(sensor_data_t indoor, sensor_data_t outdoor);
 2. **Feature Branch** 생성 (`git checkout -b feature/AmazingFeature`)
 3. **변경사항 커밋** (`git commit -m 'Add some AmazingFeature'`)
 4. **Branch에 Push** (`git push origin feature/AmazingFeature`)
-5.
