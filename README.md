@@ -16,7 +16,7 @@
         <img src="![시연영상 (2)](https://github.com/user-attachments/assets/fa0bb789-046c-4c60-8aa5-55ab0a248762)">
       </td>
       <td width="25%">
-        <strong>예시 4 대시보드</strong><br>
+        <strong>예시 4 </strong><br>
         <img src="![시연영상 (3)](https://github.com/user-attachments/assets/f54a0976-d4c7-4a3f-a2a2-951c2dc5adf0)" >
       </td>
     </tr>
