@@ -5,19 +5,19 @@
     <tr>
       <td width="25%">
         <strong>예시 1</strong><br>
-        <img src="![시연영상](https://github.com/user-attachments/assets/345c49f8-79cc-4924-a3d0-09f867352a4a)" >
+        <img src="![시연영상](https://github.com/user-attachments/assets/345c49f8-79cc-4924-a3d0-09f867352a4a)" alt="예시 1" >
       </td>
       <td width="25%">
         <strong>예시 2</strong><br>
-        <img src="![시연영상 (1)](https://github.com/user-attachments/assets/111baabe-8cf1-49e2-a425-d71fd09a8686)">
+        <img src="![시연영상 (1)](https://github.com/user-attachments/assets/111baabe-8cf1-49e2-a425-d71fd09a8686)" alt="예시 2">
       </td>
       <td width="25%">
         <strong>예시 3</strong><br>
-        <img src="![시연영상 (2)](https://github.com/user-attachments/assets/fa0bb789-046c-4c60-8aa5-55ab0a248762)">
+        <img src="![시연영상 (2)](https://github.com/user-attachments/assets/fa0bb789-046c-4c60-8aa5-55ab0a248762)" alt="예시 3">
       </td>
       <td width="25%">
         <strong>예시 4 </strong><br>
-        <img src="![시연영상 (3)](https://github.com/user-attachments/assets/f54a0976-d4c7-4a3f-a2a2-951c2dc5adf0)" >
+        <img src="![시연영상 (3)](https://github.com/user-attachments/assets/f54a0976-d4c7-4a3f-a2a2-951c2dc5adf0)" alt="예시 4">
       </td>
     </tr>
   </table>
